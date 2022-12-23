@@ -24,7 +24,7 @@ Inside [example/android](example/android) folder, please create a file called `l
 sdk.dir=<sdk_dir>
 ```
 
-Then, run the following commands:
+Then, open a terminal in the root project directory and run the following commands:
 
 ```bash
 # Install module dependencies
@@ -41,12 +41,7 @@ npx react-native run-android
 
 ### iOS
 
-Please open [example/ios/SdkExample.xcworkspace](example/ios/SdkExample.xcworkspace) and configure the necessary Xcode settings for development on iOS device.
-- Select "SdkExample" target.
-- Navigate to "Signing & Capabilities" tab.
-- Under "Signing", ensure the Provisioning Profile is correctly configured.
-
-Then, run the following commands:
+Open a terminal in the root project directory and run the following commands:
 
 ```bash
 # Install module dependencies
@@ -60,11 +55,11 @@ npm install
 cd ios
 pod install
 cd ..
-
-# Deploy on iOS device
-# This will automatically start metro
-npx react-native run-ios
 ```
+
+Finally, open [example/ios/SdkExample.xcworkspace](example/ios/SdkExample.xcworkspace) and deploy on your iOS device.
+
+> Note: Remember to configure your Provisioning Profile!
 
 ## Getting Started
 
