@@ -352,6 +352,15 @@ SWIFT_PROTOCOL("_TtP7ios_sdk21DeviceScannerDelegate_")
 - (void)onStateChange:(NSString * _Nonnull)state;
 @end
 
+
+SWIFT_CLASS("_TtC7ios_sdk3Env")
+@interface Env : NSObject
++ (void)setMode:(NSString * _Nonnull)mode;
++ (NSString * _Nonnull)getLFApiUrl SWIFT_WARN_UNUSED_RESULT;
++ (NSString * _Nonnull)getExampleApiUrl SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 #endif
 #if defined(__cplusplus)
 #endif
