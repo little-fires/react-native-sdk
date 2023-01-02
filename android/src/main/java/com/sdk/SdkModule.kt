@@ -64,7 +64,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
   fun setSessionkey(sessionkey: String, promise: Promise) {
     Log.d(TAG, "setSessionkey()")
     DeviceScanner.setSessionkey(sessionkey)
-    promise.resolve(true)
+    promise.resolve(null)
   }
 
   @ReactMethod
@@ -96,7 +96,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
         .subscribe(
           { state ->
             val params = Arguments.createMap()
-            params.putString("deviceId", device.id)
+            params.putString("deviceId", device.deviceId)
             params.putString("state", state.name)
             getReactApplicationContext()
               .getJSModule(
@@ -107,7 +107,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
           { throwable ->
             Log.e(
               TAG,
-              "Device.${device.id}: Failed to stream connection state",
+              "Device.${device.deviceId}: Failed to stream connection state",
               throwable,
             )
           },
@@ -117,7 +117,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
       device.getDataStream().observeOn(AndroidSchedulers.mainThread()).subscribe(
         { data ->
           val params = Arguments.createMap()
-          params.putString("deviceId", device.id)
+          params.putString("deviceId", device.deviceId)
           params.putString("data", Gson().toJson(data))
           getReactApplicationContext()
             .getJSModule(
@@ -128,7 +128,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
         { throwable ->
           Log.e(
             TAG,
-            "Device.${device.id}: Failed to stream data",
+            "Device.${device.deviceId}: Failed to stream data",
             throwable,
           )
         },
@@ -139,7 +139,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
     // Add device for scanning
     DeviceScanner.addDevice(device)
 
-    promise.resolve(true)
+    promise.resolve(null)
   }
 
   @ReactMethod
@@ -157,7 +157,7 @@ class SdkModule(reactContext: ReactApplicationContext) :
     // Clear existing devices
     DeviceScanner.clearDevices()
 
-    promise.resolve(true)
+    promise.resolve(null)
   }
 
   @ReactMethod
@@ -168,13 +168,13 @@ class SdkModule(reactContext: ReactApplicationContext) :
       DeviceScanner.requestPermissions(activity!!)
     }
     DeviceScanner.start()
-    promise.resolve(true)
+    promise.resolve(null)
   }
 
   @ReactMethod
   fun stop(promise: Promise) {
     Log.d(TAG, "stop()")
     DeviceScanner.stop()
-    promise.resolve(true)
+    promise.resolve(null)
   }
 }
