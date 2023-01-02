@@ -69,6 +69,10 @@ Finally, open [example/ios/SdkExample.xcworkspace](example/ios/SdkExample.xcwork
 
 ## Getting Started
 
+### Android SDK Requirements
+
+This library requires minimum Android SDK version of **26** due to future support for Google Health Connect.
+
 ### Android Permissions
 
 Please ensure the following permissions are in the AndroidManifest.xml file.
@@ -107,7 +111,7 @@ Do replace the simplified permission explanations with more detailed ones.
 
 Please refer to [Info.plist](example/ios/SdkExample/Info.plist) in the example application.
 
-## API Use Case Examples
+## API (v1) Use Case Examples
 
 This section provides examples on how to use the API for common use cases.
 
