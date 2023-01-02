@@ -6,9 +6,9 @@ This repository contains the React Native native module that bridges to underlyi
 
 ## New API Version Notice
 
-A newer API version [src/index_v2.tsx](src/index_v2.tsx) is currently working in progress so as o provide a more OOP approach.
+A [newer API version](src/index_v2.tsx) is currently working in progress so as to provide a more OOP approach.
 
-This new API version **does not** break support for the previous API version [src/index.tsx](src/index.tsx).
+This new API version **does not** break support for the [previous API version](src/index.tsx), which is still the default API implementation.
 
 ## Test on Physical Device
 
