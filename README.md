@@ -4,6 +4,12 @@
 
 This repository contains the React Native native module that bridges to underlying littlefires native Android/iOS SDK.
 
+## New API Version Notice
+
+A newer API version [src/index_v2.tsx](src/index_v2.tsx) is currently working in progress so as o provide a more OOP approach.
+
+This new API version **does not** break support for the previous API version [src/index.tsx](src/index.tsx).
+
 ## Test on Physical Device
 
 Please take note that testing can be done on a real physical device only.
