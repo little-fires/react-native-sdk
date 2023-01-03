@@ -7,66 +7,52 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.google.gson.Gson
-import io.littlefires.android_sdk.core.Env
-import io.littlefires.android_sdk.core.EnvMode
-import io.littlefires.android_sdk.devices.Device
-import io.littlefires.android_sdk.devices.DeviceFactory
-import io.littlefires.android_sdk.devices.DeviceScanner
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 
 private const val TAG = "LFSdk"
 
 class SdkModule2(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
+  private val bridge = object : AndroidSdkBridge() {
+    var emitter: DeviceEventManagerModule.RCTDeviceEventEmitter? = null
+    var currentPromise: Promise? = null
 
-  // Cache device data
-  data class DeviceCache(
-    var device: Device<*>,
-    var subscriptions: List<Disposable>,
-  )
+    override fun onSuccess(result: Any?) {
+      currentPromise?.resolve(result)
+    }
 
-  // List of error codes
-  enum class ErrorCode {
-    // Provided env mode is invalid
-    INVALID_ENV_MODE,
+    override fun onError(errorCode: String, errorMessage: String?, errorDetails: Any?) {
+      currentPromise?.reject(errorCode, errorMessage)
+    }
 
-    // Provided device id is invalid
-    INVALID_DEVICE_ID,
-
-    // Provided device UUID is invalid
-    INVALID_DEVICE_UUID,
-
-    // Device is already added to device scanner
-    DEVICE_ALREADY_ADDED,
+    override fun onCallback(name: String, arguments: Map<String, Any?>) {
+      val params = Arguments.createMap()
+      arguments.keys.forEach { key ->
+        val argument = arguments[key]
+        if (argument is Boolean) {
+          params.putBoolean(key, argument)
+        } else if (argument is Double) {
+          params.putDouble(key, argument)
+        } else if (argument is Int) {
+          params.putInt(key, argument)
+        } else if (argument is String) {
+          params.putString(key, argument)
+        } else if (argument == null) {
+          params.putNull(key)
+        } else {
+          Log.e(TAG, "Invalid callback data type: $argument")
+        }
+      }
+      emitter?.emit(name, params)
+    }
   }
-
-  private var stateStreamSubscription: Disposable? = null
-  private var deviceCacheMap = mutableMapOf<String, DeviceCache>()
 
   init {
     Log.d(TAG, "init()")
-
-    // Initialize DeviceScanner
-    DeviceScanner.init(getReactApplicationContext().getApplicationContext())
-
-    // Subscribe to DeviceScanner state stream
-    stateStreamSubscription =
-      DeviceScanner.getStateStream().observeOn(AndroidSchedulers.mainThread()).subscribe(
-        { state ->
-          val params = Arguments.createMap()
-          params.putString("state", state.name)
-          getReactApplicationContext()
-            .getJSModule(
-              DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
-            )
-            .emit("DeviceScanner.state", params)
-        },
-        { throwable ->
-          Log.e(TAG, "DeviceScanner: Failed to stream state", throwable)
-        },
+    bridge.emitter = getReactApplicationContext()
+      .getJSModule(
+        DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
       )
+    bridge.setContext(getReactApplicationContext().getApplicationContext())
   }
 
   override fun getName(): String {
@@ -76,232 +62,112 @@ class SdkModule2(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun envSetEnvMode(envMode: String, promise: Promise) {
     Log.d(TAG, "envSetEnvMode()")
-    when (envMode) {
-      "prod" -> {
-        Env.setEnvMode(EnvMode.PROD)
-        promise.resolve(null)
-      }
-      "dev" -> {
-        Env.setEnvMode(EnvMode.DEV)
-        promise.resolve(null)
-      }
-      else -> {
-        val validEnvModes =
-          EnvMode.values().joinToString(", ") { it.name.lowercase() }
-        promise.reject(
-          ErrorCode.INVALID_ENV_MODE.name,
-          "Please provide a valid env mode: $validEnvModes",
-        )
-      }
-    }
+    bridge.currentPromise = promise
+    bridge.envSetEnvMode(envMode)
   }
 
   @ReactMethod
   fun deviceNew(deviceId: String, promise: Promise) {
     Log.d(TAG, "deviceNew()")
-    val device = DeviceFactory.createDevice(deviceId)
-    if (device == null) {
-      promise.reject(ErrorCode.INVALID_DEVICE_ID.name, "Invalid device id: $deviceId")
-      return
-    }
-
-    val subscriptions: MutableList<Disposable> = mutableListOf()
-
-    // Subscribe to connection state stream
-    subscriptions.add(
-      device.getConnectionStateStream().observeOn(AndroidSchedulers.mainThread())
-        .subscribe(
-          { state ->
-            val params = Arguments.createMap()
-            params.putString("deviceUuid", device.deviceUuid)
-            params.putString("state", state.name)
-            getReactApplicationContext()
-              .getJSModule(
-                DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
-              )
-              .emit("Device.connectionState", params)
-          },
-          { throwable ->
-            Log.e(
-              TAG,
-              "Device.${device.deviceUuid}: Failed to stream connection state",
-              throwable,
-            )
-          },
-        )
-    )
-
-    // Subscribe to data stream
-    subscriptions.add(
-      device.getDataStream().observeOn(AndroidSchedulers.mainThread()).subscribe(
-        { data ->
-          val params = Arguments.createMap()
-          params.putString("deviceUuid", device.deviceUuid)
-          params.putString("data", Gson().toJson(data))
-          getReactApplicationContext()
-            .getJSModule(
-              DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
-            )
-            .emit("Device.data", params)
-        },
-        { throwable ->
-          Log.e(
-            TAG,
-            "Device.${device.deviceUuid}: Failed to stream data",
-            throwable,
-          )
-        },
-      )
-    )
-
-    // Cache device
-    deviceCacheMap[device.deviceUuid] = DeviceCache(
-      device = device,
-      subscriptions = subscriptions,
-    )
-
-    promise.resolve(device.deviceUuid)
+    bridge.currentPromise = promise
+    bridge.deviceNew(deviceId)
   }
 
   @ReactMethod
   fun deviceSetMacAddress(deviceUuid: String, macAddress: String, promise: Promise) {
     Log.d(TAG, "deviceSetMacAddress()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    deviceCache.device.matchBluetoothMacAddress = macAddress
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceSetMacAddress(deviceUuid, macAddress)
   }
 
   @ReactMethod
   fun deviceGetDeviceId(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceGetDeviceId()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    promise.resolve(deviceCache.device.deviceId)
+    bridge.currentPromise = promise
+    bridge.deviceGetDeviceId(deviceUuid)
   }
 
   @ReactMethod
   fun deviceGetSourceType(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceGetSourceType()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    promise.resolve(deviceCache.device.sourceType.name)
+    bridge.currentPromise = promise
+    bridge.deviceGetSourceType(deviceUuid)
   }
 
   @ReactMethod
   fun deviceGetDeviceType(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceGetDeviceType()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    promise.resolve(deviceCache.device.deviceType.name)
+    bridge.currentPromise = promise
+    bridge.deviceGetDeviceType(deviceUuid)
   }
 
   @ReactMethod
   fun deviceGetDeviceModel(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceGetDeviceModel()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    promise.resolve(deviceCache.device.deviceModel)
+    bridge.currentPromise = promise
+    bridge.deviceGetDeviceModel(deviceUuid)
   }
 
   @ReactMethod
   fun deviceGetBluetoothName(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceGetBluetoothName()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    promise.resolve(deviceCache.device.getBluetoothName())
+    bridge.currentPromise = promise
+    bridge.deviceGetBluetoothName(deviceUuid)
   }
 
   @ReactMethod
   fun deviceGetBluetoothMacAddress(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceGetBluetoothMacAddress()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    promise.resolve(deviceCache.device.getBluetoothMacAddress())
+    bridge.currentPromise = promise
+    bridge.deviceGetBluetoothMacAddress(deviceUuid)
   }
 
   @ReactMethod
   fun deviceDelete(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceDelete()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-
-    // Remove device from device scanner if added
-    DeviceScanner.removeDevice(deviceCache.device)
-
-    // Disconnect device
-    deviceCache.device.disconnect()
-
-    // Cancel subscriptions
-    for (subscription in deviceCache.subscriptions) {
-      subscription.dispose()
-    }
-
-    // Remove device from cache
-    deviceCacheMap.remove(deviceUuid)
-
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceDelete(deviceUuid)
   }
 
   @ReactMethod
   fun deviceScannerSetSessionkey(sessionkey: String, promise: Promise) {
     Log.d(TAG, "deviceScannerSetSessionkey()")
-    DeviceScanner.setSessionkey(sessionkey)
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceScannerSetSessionkey(sessionkey)
   }
 
   @ReactMethod
   fun deviceScannerAddDevice(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceScannerAddDevice()")
-    val deviceCache = getDeviceCache(deviceUuid, promise) ?: return
-    DeviceScanner.addDevice(deviceCache.device)
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceScannerAddDevice(deviceUuid)
   }
 
   @ReactMethod
   fun deviceScannerClearDevices(promise: Promise) {
     Log.d(TAG, "deviceScannerClearDevices()")
-    DeviceScanner.clearDevices()
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceScannerClearDevices()
   }
 
   @ReactMethod
   fun deviceScannerStart(promise: Promise) {
     Log.d(TAG, "deviceScannerStart()")
-    val activity = getReactApplicationContext().getCurrentActivity()
-    if (activity != null) {
-      DeviceScanner.requestPermissions(activity!!)
-    }
-    DeviceScanner.start()
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceScannerStart()
   }
 
   @ReactMethod
   fun deviceScannerStop(promise: Promise) {
     Log.d(TAG, "deviceScannerStop()")
-    DeviceScanner.stop()
-    promise.resolve(null)
+    bridge.currentPromise = promise
+    bridge.deviceScannerStop()
   }
 
   @ReactMethod
   fun deviceCacheClear(promise: Promise) {
     Log.d(TAG, "deviceCacheClear()")
-    // Remove all devices
-    for (deviceCache in deviceCacheMap) {
-      // Remove device from device scanner if added
-      DeviceScanner.removeDevice(deviceCache.value.device)
-
-      // Disconnect device
-      deviceCache.value.device.disconnect()
-
-      // Cancel subscriptions
-      for (subscription in deviceCache.value.subscriptions) {
-        subscription.dispose()
-      }
-    }
-    deviceCacheMap.clear()
-
-    promise.resolve(null)
-  }
-
-  private fun getDeviceCache(uuid: String, promise: Promise): DeviceCache? {
-    val deviceCache = deviceCacheMap[uuid]
-    if (deviceCache == null) {
-      promise.reject(ErrorCode.INVALID_DEVICE_UUID.name, "Invalid device uuid: $uuid")
-      return null
-    }
-    return deviceCache
+    bridge.currentPromise = promise
+    bridge.deviceCacheClear()
   }
 }
