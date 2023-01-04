@@ -132,6 +132,16 @@ RCT_REMAP_METHOD(deviceGetBluetoothMacAddress,
     [self.iosSdkBridge deviceGetBluetoothMacAddress:deviceUuid];
 }
 
+RCT_REMAP_METHOD(deviceGetNeedsPairing,
+                 deviceGetNeedsPairingWithDeviceUuid:(NSString *)deviceUuid
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    self.currentResolve = resolve;
+    self.currentReject = reject;
+    [self.iosSdkBridge deviceGetNeedsPairing:deviceUuid];
+}
+
 RCT_REMAP_METHOD(deviceGetDeviceDelete,
                  deviceGetDeviceDeleteWithDeviceUuid:(NSString *)deviceUuid
                  withResolver:(RCTPromiseResolveBlock)resolve

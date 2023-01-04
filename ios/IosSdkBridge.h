@@ -26,6 +26,7 @@
 -(void)deviceGetDeviceModel:(NSString * _Nonnull)deviceUuid;
 -(void)deviceGetBluetoothName:(NSString * _Nonnull)deviceUuid;
 -(void)deviceGetBluetoothMacAddress:(NSString * _Nonnull)deviceUuid;
+-(void)deviceGetNeedsPairing:(NSString * _Nonnull)deviceUuid;
 -(void)deviceDelete:(NSString * _Nonnull)deviceUuid;
 
 -(void)deviceScannerSetSessionkey:(NSString * _Nonnull)sessionkey;

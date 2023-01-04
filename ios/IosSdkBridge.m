@@ -168,6 +168,14 @@
     [self.delegate onSuccess:deviceCache.device.getBluetoothUuid];
 }
 
+-(void)deviceGetNeedsPairing:(NSString * _Nonnull)deviceUuid {
+    DeviceCache *deviceCache = [self getDeviceCache:deviceUuid];
+    if (deviceCache == nil) {
+        return;
+    }
+    [self.delegate onSuccess:[NSNumber numberWithBool:deviceCache.device.getNeedsPairing]];
+}
+
 -(void)deviceDelete:(NSString * _Nonnull)deviceUuid {
     DeviceCache *deviceCache = [self getDeviceCache:deviceUuid];
     if (deviceCache == nil) {
