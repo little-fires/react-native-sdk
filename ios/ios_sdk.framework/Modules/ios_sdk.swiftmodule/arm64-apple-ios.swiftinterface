@@ -1,0 +1,126 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)
+// swift-module-flags: -target arm64-apple-ios16.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ios_sdk
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CoreBluetooth
+import Foundation
+import OSLog
+import Swift
+import _Concurrency
+import _StringProcessing
+@_exported import ios_sdk
+@_inheritsConvenienceInitializers @objc public class Env : ObjectiveC.NSObject {
+  @objc public static func setMode(_ mode: Swift.String)
+  @objc public static func getLFApiUrl() -> Swift.String
+  @objc public static func getExampleApiUrl() -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class Device : ObjectiveC.NSObject, CoreBluetooth.CBPeripheralDelegate {
+  @objc public enum SourceType : Swift.Int {
+    case cloud
+    case bluetoothLowEnergy
+    case mobilePhone
+    case unknown
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public enum DeviceType : Swift.Int {
+    case bloodPressureMonitor
+    case continuousGlucoseMonitor
+    case glucoseMeter
+    case mobilePhone
+    case pulseOximeter
+    case smartScale
+    case smartWatch
+    case thermometer
+    case unknown
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public enum ConnectionState : Swift.Int, Swift.Codable {
+    case connecting
+    case connected
+    case disconnected
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public var delegate: ios_sdk.DeviceDelegate?
+  public init(deviceId: Swift.String, sourceType: ios_sdk.Device.SourceType, deviceType: ios_sdk.Device.DeviceType, deviceModel: Swift.String? = nil, matchBluetoothName: Swift.String?, matchBluetoothUuid: Swift.String? = nil, needsPairing: Swift.Bool = false)
+  @objc public func getDeviceUuid() -> Swift.String
+  @objc public func getDeviceId() -> Swift.String
+  @objc public func getSourceType() -> ios_sdk.Device.SourceType
+  @objc public func getSourceTypeAsString() -> Swift.String
+  @objc public func getDeviceType() -> ios_sdk.Device.DeviceType
+  @objc public func getDeviceTypeAsString() -> Swift.String
+  @objc public func getDeviceModel() -> Swift.String?
+  @objc public func getBluetoothName() -> Swift.String?
+  @objc public func getBluetoothUuid() -> Swift.String?
+  @objc public func getNeedsPairing() -> Swift.Bool
+  @objc public func getConnectionState() -> ios_sdk.Device.ConnectionState
+  @objc public func getPeripheral() -> CoreBluetooth.CBPeripheral?
+  @objc public func setMatchBluetoothName(_ matchBluetoothName: Swift.String)
+  @objc public func setMatchBluetoothUuid(_ matchBluetoothUuid: Swift.String)
+  @objc public func connect(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc public func disconnect()
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverServices error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverCharacteristicsFor service: CoreBluetooth.CBService, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateNotificationStateFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateValueFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didWriteValueFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class DeviceFactory : ObjectiveC.NSObject {
+  @objc public static func createDevice(_ deviceId: Swift.String) -> ios_sdk.Device?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class JSONUtils : ObjectiveC.NSObject {
+  @objc public static func dictToJSONString(_ data: [Swift.String : Any]) -> Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class DeviceScanner : ObjectiveC.NSObject, CoreBluetooth.CBCentralManagerDelegate {
+  @objc public var delegate: ios_sdk.DeviceScannerDelegate?
+  @objc override dynamic public init()
+  @objc public func setSessionkey(_ sessionkey: Swift.String)
+  @objc public func getDevices() -> [ios_sdk.Device]
+  @objc public func getDeviceByUuid(_ uuid: Swift.String) -> ios_sdk.Device?
+  @objc public func addDevice(_ device: ios_sdk.Device)
+  @objc public func addDeviceByDeviceId(_ deviceId: Swift.String) -> ios_sdk.Device?
+  @objc public func removeDevice(_ device: ios_sdk.Device)
+  @objc public func clearDevices()
+  @objc public func start()
+  @objc public func stop()
+  @objc public func centralManagerDidUpdateState(_ central: CoreBluetooth.CBCentralManager)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDiscover peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], rssi RSSI: Foundation.NSNumber)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didConnect peripheral: CoreBluetooth.CBPeripheral)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didFailToConnect peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error?)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDisconnectPeripheral peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error?)
+  @objc deinit
+}
+@objc public protocol DeviceScannerDelegate {
+  @objc func onStateChange(_ state: Swift.String)
+}
+@objc public protocol DeviceDelegate {
+  @objc func onConnectionStateChange(_ state: Swift.String)
+  @objc func onPublish(_ data: [Swift.String : Any])
+}
+extension ios_sdk.Device.SourceType : Swift.Equatable {}
+extension ios_sdk.Device.SourceType : Swift.Hashable {}
+extension ios_sdk.Device.SourceType : Swift.RawRepresentable {}
+extension ios_sdk.Device.DeviceType : Swift.Equatable {}
+extension ios_sdk.Device.DeviceType : Swift.Hashable {}
+extension ios_sdk.Device.DeviceType : Swift.RawRepresentable {}
+extension ios_sdk.Device.ConnectionState : Swift.Equatable {}
+extension ios_sdk.Device.ConnectionState : Swift.Hashable {}
+extension ios_sdk.Device.ConnectionState : Swift.RawRepresentable {}

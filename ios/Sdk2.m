@@ -2,7 +2,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <ios_sdk/ios_sdk-Swift.h>
 
-@interface Sdk()
+@interface Sdk2()
 
 @property (nonatomic, weak, nullable) RCTPromiseResolveBlock currentResolve;
 @property (nonatomic, weak, nullable) RCTPromiseRejectBlock currentReject;
@@ -10,9 +10,9 @@
 
 @end
 
-@implementation Sdk
+@implementation Sdk2
 
-RCT_EXPORT_MODULE(LFSdk)
+RCT_EXPORT_MODULE(LFSdk2)
 
 -(id)init {
     if (self = [super init]) {

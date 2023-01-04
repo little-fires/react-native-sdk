@@ -46,7 +46,6 @@
 - (void)onPublish:(NSDictionary<NSString *, id> * _Nonnull)data {
     NSString *dataJson = [JSONUtils dictToJSONString:data];
     //    NSLog(@"DeviceDelegateImpl.onPublish(): %@", dataJson);
-    
     NSDictionary *arguments = [NSDictionary
                                dictionaryWithObjects:[NSArray arrayWithObjects:self.deviceUuid, dataJson, nil]
                                forKeys:[NSArray arrayWithObjects:@"deviceUuid", @"data", nil]];
@@ -63,7 +62,6 @@
 
 @property (nonatomic, strong, nullable) HealthKitClient *healthKitClient;
 @property (nonatomic, strong, nullable) DeviceScanner *deviceScanner;
-@property (nonatomic, strong, nullable) FlutterMethodChannel *channel;
 @property (nonatomic, strong, nullable) DeviceScannerDelegateImpl *deviceScannerDelegateImpl;
 @property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, DeviceCache *> *deviceCacheDictionary;
 

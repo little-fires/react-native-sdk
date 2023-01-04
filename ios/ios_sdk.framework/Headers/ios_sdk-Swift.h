@@ -254,6 +254,10 @@ using UInt = size_t;
 
 #if defined(__OBJC__)
 @protocol DeviceDelegate;
+@class NSString;
+enum SourceType : NSInteger;
+enum DeviceType : NSInteger;
+enum ConnectionState : NSInteger;
 @class CBPeripheral;
 @class CBService;
 @class CBCharacteristic;
@@ -262,6 +266,38 @@ using UInt = size_t;
 SWIFT_CLASS("_TtC7ios_sdk6Device")
 @interface Device : NSObject <CBPeripheralDelegate>
 @property (nonatomic, strong) id <DeviceDelegate> _Nullable delegate;
+/// Returns device uuid
+- (NSString * _Nonnull)getDeviceUuid SWIFT_WARN_UNUSED_RESULT;
+/// Returns device id
+- (NSString * _Nonnull)getDeviceId SWIFT_WARN_UNUSED_RESULT;
+/// Returns source type
+- (enum SourceType)getSourceType SWIFT_WARN_UNUSED_RESULT;
+/// Returns source type as string
+- (NSString * _Nonnull)getSourceTypeAsString SWIFT_WARN_UNUSED_RESULT;
+/// Returns device type
+- (enum DeviceType)getDeviceType SWIFT_WARN_UNUSED_RESULT;
+/// Returns device type as string
+- (NSString * _Nonnull)getDeviceTypeAsString SWIFT_WARN_UNUSED_RESULT;
+/// Returns device model
+- (NSString * _Nullable)getDeviceModel SWIFT_WARN_UNUSED_RESULT;
+/// Returns Bluetooth name
+- (NSString * _Nullable)getBluetoothName SWIFT_WARN_UNUSED_RESULT;
+/// Returns Bluetooth uuid
+- (NSString * _Nullable)getBluetoothUuid SWIFT_WARN_UNUSED_RESULT;
+/// Returns flag to indicate if Bluetooth pairing is required
+- (BOOL)getNeedsPairing SWIFT_WARN_UNUSED_RESULT;
+/// Returns the device’s current connection state
+- (enum ConnectionState)getConnectionState SWIFT_WARN_UNUSED_RESULT;
+/// Returns the device’s connecting or connected Bluetooth peripheral
+- (CBPeripheral * _Nullable)getPeripheral SWIFT_WARN_UNUSED_RESULT;
+/// Sets the Bluetooth name to match against
+/// \param matchBluetoothName Bluetooth name to match against
+///
+- (void)setMatchBluetoothName:(NSString * _Nonnull)matchBluetoothName;
+/// Sets the Bluetooth uuid to match against
+/// \param matchBluetoothUuid Bluetooth uuid to match against
+///
+- (void)setMatchBluetoothUuid:(NSString * _Nonnull)matchBluetoothUuid;
 /// Indicates successful connection to Bluetooth peripheral
 /// \param peripheral Connected Bluetooth peripheral
 ///
@@ -277,7 +313,31 @@ SWIFT_CLASS("_TtC7ios_sdk6Device")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-@class NSString;
+typedef SWIFT_ENUM(NSInteger, SourceType, open) {
+  SourceTypeCloud = 0,
+  SourceTypeBluetoothLowEnergy = 1,
+  SourceTypeMobilePhone = 2,
+  SourceTypeUnknown = 3,
+};
+
+typedef SWIFT_ENUM(NSInteger, DeviceType, open) {
+  DeviceTypeBloodPressureMonitor = 0,
+  DeviceTypeContinuousGlucoseMonitor = 1,
+  DeviceTypeGlucoseMeter = 2,
+  DeviceTypeMobilePhone = 3,
+  DeviceTypePulseOximeter = 4,
+  DeviceTypeSmartScale = 5,
+  DeviceTypeSmartWatch = 6,
+  DeviceTypeThermometer = 7,
+  DeviceTypeUnknown = 8,
+};
+
+typedef SWIFT_ENUM(NSInteger, ConnectionState, open) {
+  ConnectionStateConnecting = 0,
+  ConnectionStateConnected = 1,
+  ConnectionStateDisconnected = 2,
+};
+
 
 /// Handles <code>Device</code> related events
 SWIFT_PROTOCOL("_TtP7ios_sdk14DeviceDelegate_")
@@ -286,10 +346,10 @@ SWIFT_PROTOCOL("_TtP7ios_sdk14DeviceDelegate_")
 /// \param state State options: <code>connecting</code>, <code>connected</code>, <code>disconnected</code>
 ///
 - (void)onConnectionStateChange:(NSString * _Nonnull)state;
-/// Called when new data is received
-/// \param dataJsonString Data received in JSON string format
+/// Called when new data is published
+/// \param data Data published as dictionary
 ///
-- (void)onReceive:(NSString * _Nonnull)dataJsonString;
+- (void)onPublish:(NSDictionary<NSString *, id> * _Nonnull)data;
 @end
 
 
@@ -318,11 +378,31 @@ SWIFT_CLASS("_TtC7ios_sdk13DeviceScanner")
 /// \param sessionkey Backend sessionkey
 ///
 - (void)setSessionkey:(NSString * _Nonnull)sessionkey;
+/// Gets added devices
+///
+/// returns:
+/// List of added devices
+- (NSArray<Device *> * _Nonnull)getDevices SWIFT_WARN_UNUSED_RESULT;
+/// Gets device by its UUID
+/// \param uuid Device UUID
+///
+///
+/// returns:
+/// Device if found, nil otherwise
+- (Device * _Nullable)getDeviceByUuid:(NSString * _Nonnull)uuid SWIFT_WARN_UNUSED_RESULT;
 /// Adds a device for scanning
-/// Device can be added when scanning has started
+/// Device can be added even if scanning has started
 /// \param device Device to be added for scanning
 ///
 - (void)addDevice:(Device * _Nonnull)device;
+/// Adds a device by device id  for scanning
+/// Device can be added even if scanning has started
+/// \param deviceId Device id
+///
+///
+/// returns:
+/// Added device on success, nil otherwise
+- (Device * _Nullable)addDeviceByDeviceId:(NSString * _Nonnull)deviceId SWIFT_WARN_UNUSED_RESULT;
 /// Removes a device from scanning
 /// Device will be disconnected if connecting or connected
 /// \param device Device to be added for scanning
@@ -358,6 +438,20 @@ SWIFT_CLASS("_TtC7ios_sdk3Env")
 + (void)setMode:(NSString * _Nonnull)mode;
 + (NSString * _Nonnull)getLFApiUrl SWIFT_WARN_UNUSED_RESULT;
 + (NSString * _Nonnull)getExampleApiUrl SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Useful JSON utilities
+SWIFT_CLASS("_TtC7ios_sdk9JSONUtils")
+@interface JSONUtils : NSObject
+/// Convert dictonary to JSON string
+/// \param data Data dictionary
+///
+///
+/// returns:
+/// Data formatted as JSON string on success, nil otherwise
++ (NSString * _Nullable)dictToJSONString:(NSDictionary<NSString *, id> * _Nonnull)data SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

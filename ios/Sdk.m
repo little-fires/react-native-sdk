@@ -2,13 +2,13 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <ios_sdk/ios_sdk-Swift.h>
 
-@interface DeviceScannerDelegateImpl : NSObject<DeviceScannerDelegate>
+@interface DeviceScannerDelegateImpl2 : NSObject<DeviceScannerDelegate>
 
 @property (nonatomic, weak, nullable) Sdk *emitter;
 
 @end
 
-@interface DeviceDelegateImpl : NSObject<DeviceDelegate>
+@interface DeviceDelegateImpl2 : NSObject<DeviceDelegate>
 
 @property (nonatomic, weak, nullable) Sdk *emitter;
 @property (nonatomic, strong, nullable) NSString *deviceId;
@@ -17,14 +17,14 @@
 
 @interface Sdk()
 
-@property (nonatomic, strong, nullable) DeviceDelegateImpl *deviceDelegateImpl;
-@property (nonatomic, strong, nullable) DeviceScannerDelegateImpl *deviceScannerDelegateImpl;
+@property (nonatomic, strong, nullable) DeviceDelegateImpl2 *deviceDelegateImpl;
+@property (nonatomic, strong, nullable) DeviceScannerDelegateImpl2 *deviceScannerDelegateImpl;
 @property (nonatomic, strong, nullable) DeviceScanner *deviceScanner;
 @property (nonatomic, strong, nullable) Device *device;
 
 @end
 
-@implementation DeviceScannerDelegateImpl
+@implementation DeviceScannerDelegateImpl2
 
 - (void)onStateChange:(NSString * _Nonnull)state {
     NSLog(@"DeviceScannerDelegateImpl.onStateChange(): %@", state);
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation DeviceDelegateImpl
+@implementation DeviceDelegateImpl2
 
 - (void)onConnectionStateChange:(NSString * _Nonnull)state {
     NSLog(@"DeviceDelegateImpl.onConnectionStateChange(): %@", state);
@@ -49,8 +49,9 @@
     [self.emitter sendEventWithName:@"Device.connectionState" body:@{@"deviceId": self.deviceId, @"state": state}];
 }
 
-- (void)onReceive:(NSString * _Nonnull)dataJsonString {
-    //    NSLog(@"DeviceDelegateImpl.onReceive(): %@", dataJsonString);
+- (void)onPublish:(NSDictionary<NSString *, id> * _Nonnull)data {
+    NSString *dataJson = [JSONUtils dictToJSONString:data];
+    //    NSLog(@"DeviceDelegateImpl.onPublish(): %@", dataJson);
     if (!self.emitter.hasListeners) {
         return;
     }
@@ -59,8 +60,8 @@
     }
     NSMutableArray *body = [NSMutableArray new];
     [body addObject:self.deviceId];
-    [body addObject:dataJsonString];
-    [self.emitter sendEventWithName:@"Device.data" body:@{@"deviceId": self.deviceId, @"data": dataJsonString}];
+    [body addObject:dataJson];
+    [self.emitter sendEventWithName:@"Device.data" body:@{@"deviceId": self.deviceId, @"data": dataJson}];
 }
 
 @end
@@ -72,9 +73,9 @@ RCT_EXPORT_MODULE(LFSdk)
 -(id)init {
     if (self = [super init]) {
         self.hasListeners = false;
-        self.deviceDelegateImpl = [DeviceDelegateImpl new];
+        self.deviceDelegateImpl = [DeviceDelegateImpl2 new];
         self.deviceDelegateImpl.emitter = self;
-        self.deviceScannerDelegateImpl = [DeviceScannerDelegateImpl new];
+        self.deviceScannerDelegateImpl = [DeviceScannerDelegateImpl2 new];
         self.deviceScannerDelegateImpl.emitter = self;
         self.deviceScanner = [DeviceScanner new];
         self.deviceScanner.delegate = self.deviceScannerDelegateImpl;

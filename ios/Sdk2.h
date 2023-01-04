@@ -4,11 +4,11 @@
 #ifdef RCT_NEW_ARCH_ENABLED
 #import "RNSdkSpec.h"
 
-@interface Sdk : RCTEventEmitter <NativeSdkSpec, IosSdkBridgeDelegate>
+@interface Sdk2 : RCTEventEmitter <NativeSdkSpec, IosSdkBridgeDelegate>
 #else
 #import <React/RCTBridgeModule.h>
 
-@interface Sdk : RCTEventEmitter <RCTBridgeModule, IosSdkBridgeDelegate>
+@interface Sdk2 : RCTEventEmitter <RCTBridgeModule, IosSdkBridgeDelegate>
 #endif
 
 @property bool hasListeners;
