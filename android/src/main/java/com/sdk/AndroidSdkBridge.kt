@@ -184,6 +184,11 @@ abstract class AndroidSdkBridge {
     onSuccess(deviceCache.device.getBluetoothMacAddress())
   }
 
+  fun deviceGetNeedsPairing(deviceUuid: String) {
+    val deviceCache = getDeviceCache(deviceUuid) ?: return
+    onSuccess(deviceCache.device.needsPairing)
+  }
+
   fun deviceDelete(deviceUuid: String) {
     val deviceCache = getDeviceCache(deviceUuid) ?: return
 

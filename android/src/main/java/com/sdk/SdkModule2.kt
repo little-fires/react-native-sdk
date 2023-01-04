@@ -123,6 +123,13 @@ class SdkModule2(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
+  fun deviceGetNeedsPairing(deviceUuid: String, promise: Promise) {
+    Log.d(TAG, "deviceGetNeedsPairing()")
+    bridge.currentPromise = promise
+    bridge.deviceGetNeedsPairing(deviceUuid)
+  }
+
+  @ReactMethod
   fun deviceDelete(deviceUuid: String, promise: Promise) {
     Log.d(TAG, "deviceDelete()")
     bridge.currentPromise = promise
