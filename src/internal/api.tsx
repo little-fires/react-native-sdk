@@ -36,11 +36,21 @@ export class Api {
     return LFSdk.deviceNew(deviceId);
   };
 
-  static deviceSetMacAddress = async (
+  static deviceSetMatchBluetoothNames = async (
     deviceUuid: string,
-    macAddress: string
+    matchBluetoothNames: string[]
   ) => {
-    await LFSdk.deviceSetMacAddress(deviceUuid, macAddress);
+    await LFSdk.deviceSetMatchBluetoothNames(deviceUuid, matchBluetoothNames);
+  };
+
+  static deviceSetMatchBluetoothMacAddresses = async (
+    deviceUuid: string,
+    matchBluetoothMacAddresses: string[]
+  ) => {
+    await LFSdk.deviceSetMatchBluetoothMacAddresses(
+      deviceUuid,
+      matchBluetoothMacAddresses
+    );
   };
 
   static deviceGetDeviceId = async (deviceUuid: string): Promise<string> => {

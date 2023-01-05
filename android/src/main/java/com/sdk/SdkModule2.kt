@@ -7,12 +7,13 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.modules.core.DeviceEventManagerModule
+import io.littlefires.android_sdk.Bridge
 
 private const val TAG = "LFSdk"
 
 class SdkModule2(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
-  private val bridge = object : AndroidSdkBridge() {
+  private val bridge = object : Bridge() {
     var emitter: DeviceEventManagerModule.RCTDeviceEventEmitter? = null
     var currentPromise: Promise? = null
 
@@ -74,10 +75,25 @@ class SdkModule2(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun deviceSetMacAddress(deviceUuid: String, macAddress: String, promise: Promise) {
-    Log.d(TAG, "deviceSetMacAddress()")
+  fun deviceSetMatchBluetoothNames(
+    deviceUuid: String,
+    matchBluetoothNames: List<String>,
+    promise: Promise,
+  ) {
+    Log.d(TAG, "deviceSetMatchBluetoothNames()")
     bridge.currentPromise = promise
-    bridge.deviceSetMacAddress(deviceUuid, macAddress)
+    bridge.deviceSetMatchBluetoothNames(deviceUuid, matchBluetoothNames)
+  }
+
+  @ReactMethod
+  fun deviceSetMatchBluetoothMacAddresses(
+    deviceUuid: String,
+    matchBluetoothMacAddresses: List<String>,
+    promise: Promise,
+  ) {
+    Log.d(TAG, "deviceSetMatchBluetoothMacAddresses()")
+    bridge.currentPromise = promise
+    bridge.deviceSetMatchBluetoothMacAddresses(deviceUuid, matchBluetoothMacAddresses)
   }
 
   @ReactMethod
