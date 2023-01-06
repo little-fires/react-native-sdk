@@ -217,12 +217,12 @@ const onDeviceData = (data: any) => {
   } else if (deviceId === 'wellue') {
     event = { deviceId, ...jsonData };
   } else if (deviceId === 'yuwell') {
-    const state = (jsonData.state || '').toLowerCase();
-    if (state === 'measuring') {
+    const state = (`${jsonData.state}` || '').toLowerCase();
+    if (state === 'measuring' || state === '1') {
       jsonData.state = 'measuring';
-    } else if (state === 'success') {
+    } else if (state === 'success' || state === '2') {
       jsonData.state = 'success';
-    } else if (state === 'error') {
+    } else if (state === 'error' || state === '3') {
       jsonData.state = 'error';
     } else {
       console.warn(`Invalid yuwell state: ${state}`);
