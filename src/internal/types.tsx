@@ -23,7 +23,7 @@ export type DeviceSourceType =
 export type DeviceDeviceType =
   | 'blood_pressure_monitor'
   | 'continuous_glucose_monitor'
-  | 'glucose_meter'
+  | 'blood_glucose_meter'
   | 'mobile_phone'
   | 'pulse_oximeter'
   | 'smart_scale'

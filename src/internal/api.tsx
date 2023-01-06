@@ -66,7 +66,8 @@ export class Api {
   static deviceGetDeviceType = async (
     deviceUuid: string
   ): Promise<DeviceDeviceType> => {
-    return LFSdk.deviceGetDeviceType(deviceUuid);
+    const deviceType: string = await LFSdk.deviceGetDeviceType(deviceUuid);
+    return deviceType.toLowerCase() as DeviceDeviceType;
   };
 
   static deviceGetDeviceModel = async (deviceUuid: string): Promise<string> => {
