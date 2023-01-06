@@ -498,7 +498,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.littlefires.react-native-sdk.example";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.littlefires.react-native-sdk.example2";
 				PRODUCT_NAME = SdkExample;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -524,7 +524,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.littlefires.react-native-sdk.example";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.littlefires.react-native-sdk.example2";
 				PRODUCT_NAME = SdkExample;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

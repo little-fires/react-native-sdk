@@ -31,7 +31,7 @@ import _StringProcessing
   @objc public enum DeviceType : Swift.Int {
     case bloodPressureMonitor
     case continuousGlucoseMonitor
-    case glucoseMeter
+    case bloodGlucoseMeter
     case mobilePhone
     case pulseOximeter
     case smartScale
@@ -55,7 +55,7 @@ import _StringProcessing
     }
   }
   @objc public var delegate: ios_sdk.DeviceDelegate?
-  public init(deviceId: Swift.String, sourceType: ios_sdk.Device.SourceType, deviceType: ios_sdk.Device.DeviceType, deviceModel: Swift.String? = nil, matchBluetoothName: Swift.String?, matchBluetoothUuid: Swift.String? = nil, needsPairing: Swift.Bool = false)
+  public init(deviceId: Swift.String, sourceType: ios_sdk.Device.SourceType, deviceType: ios_sdk.Device.DeviceType, deviceModel: Swift.String? = nil, matchBluetoothNames: [Swift.String], matchBluetoothUuids: [Swift.String] = [], needsPairing: Swift.Bool = false, notifyEndpoint: Swift.String? = nil)
   @objc public func getDeviceUuid() -> Swift.String
   @objc public func getDeviceId() -> Swift.String
   @objc public func getSourceType() -> ios_sdk.Device.SourceType
@@ -68,8 +68,8 @@ import _StringProcessing
   @objc public func getNeedsPairing() -> Swift.Bool
   @objc public func getConnectionState() -> ios_sdk.Device.ConnectionState
   @objc public func getPeripheral() -> CoreBluetooth.CBPeripheral?
-  @objc public func setMatchBluetoothName(_ matchBluetoothName: Swift.String)
-  @objc public func setMatchBluetoothUuid(_ matchBluetoothUuid: Swift.String)
+  @objc public func setMatchBluetoothNames(_ matchBluetoothNames: [Swift.String])
+  @objc public func setMatchBluetoothUuids(_ matchBluetoothUuids: [Swift.String])
   @objc public func connect(_ peripheral: CoreBluetooth.CBPeripheral)
   @objc public func disconnect()
   @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverServices error: Swift.Error?)
@@ -110,6 +110,33 @@ import _StringProcessing
 }
 @objc public protocol DeviceScannerDelegate {
   @objc func onStateChange(_ state: Swift.String)
+}
+@objc public class Bridge : ObjectiveC.NSObject {
+  @objc public init(delegate: ios_sdk.BridgeDelegate)
+  @objc public func envSetEnvMode(_ envMode: Swift.String)
+  @objc public func deviceNew(_ deviceId: Swift.String)
+  @objc public func deviceSetMatchBluetoothNames(_ deviceUuid: Swift.String, matchBluetoothNames: [Swift.String])
+  @objc public func deviceSetMatchBluetoothMacAddresses(_ deviceUuid: Swift.String, matchBluetoothMacAddresses: [Swift.String])
+  @objc public func deviceGetDeviceId(_ deviceUuid: Swift.String)
+  @objc public func deviceGetSourceType(_ deviceUuid: Swift.String)
+  @objc public func deviceGetDeviceType(_ deviceUuid: Swift.String)
+  @objc public func deviceGetDeviceModel(_ deviceUuid: Swift.String)
+  @objc public func deviceGetBluetoothName(_ deviceUuid: Swift.String)
+  @objc public func deviceGetBluetoothMacAddress(_ deviceUuid: Swift.String)
+  @objc public func deviceGetNeedsPairing(_ deviceUuid: Swift.String)
+  @objc public func deviceDelete(_ deviceUuid: Swift.String)
+  @objc public func deviceScannerSetSessionkey(_ sessionkey: Swift.String)
+  @objc public func deviceScannerAddDevice(_ deviceUuid: Swift.String)
+  @objc public func deviceScannerClearDevices()
+  @objc public func deviceScannerStart()
+  @objc public func deviceScannerStop()
+  @objc public func deviceCacheClear()
+  @objc deinit
+}
+@objc public protocol BridgeDelegate {
+  @objc func onSuccess(_ result: Any?)
+  @objc func onError(_ errorCode: Swift.String, errorMessage: Swift.String, errorDetails: Swift.String?)
+  @objc func onCallback(_ name: Swift.String, arguments: Swift.Dictionary<Swift.String, Any>)
 }
 @objc public protocol DeviceDelegate {
   @objc func onConnectionStateChange(_ state: Swift.String)

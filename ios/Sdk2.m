@@ -6,7 +6,7 @@
 
 @property (nonatomic, weak, nullable) RCTPromiseResolveBlock currentResolve;
 @property (nonatomic, weak, nullable) RCTPromiseRejectBlock currentReject;
-@property (nonatomic, strong, nullable) IosSdkBridge *iosSdkBridge;
+@property (nonatomic, strong, nullable) Bridge *iosSdkBridge;
 
 @end
 
@@ -18,8 +18,7 @@ RCT_EXPORT_MODULE(LFSdk2)
     if (self = [super init]) {
         self.currentResolve = nil;
         self.currentReject = nil;
-        self.iosSdkBridge = [IosSdkBridge new];
-        self.iosSdkBridge.delegate = self;
+        self.iosSdkBridge = [[Bridge alloc] initWithDelegate:self];
         self.hasListeners = false;
     }
     return self;
@@ -61,15 +60,28 @@ RCT_REMAP_METHOD(deviceNew,
     [self.iosSdkBridge deviceNew:deviceId];
 }
 
-RCT_REMAP_METHOD(deviceSetMacAddress,
-                 deviceSetMacAddressWithDeviceUuid:(NSString *)deviceUuid
-                 macAddress:(NSString *)macAddress
+RCT_REMAP_METHOD(deviceSetMatchBluetoothNames,
+                 deviceSetMatchBluetoothNamesWithDeviceUuid:(NSString *)deviceUuid
+                 macAddress:(NSArray *)matchBluetoothNames
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 {
     self.currentResolve = resolve;
     self.currentReject = reject;
-    [self.iosSdkBridge deviceSetMacAddress:deviceUuid macAddress:macAddress];
+    [self.iosSdkBridge deviceSetMatchBluetoothNames:deviceUuid
+                                matchBluetoothNames:matchBluetoothNames];
+}
+
+RCT_REMAP_METHOD(deviceSetMatchBluetoothMacAddresses,
+                 deviceSetMatchBluetoothMacAddressesWithDeviceUuid:(NSString *)deviceUuid
+                 macAddress:(NSArray *)matchBluetoothMacAddresses
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    self.currentResolve = resolve;
+    self.currentReject = reject;
+    [self.iosSdkBridge deviceSetMatchBluetoothMacAddresses:deviceUuid
+                                matchBluetoothMacAddresses:matchBluetoothMacAddresses];
 }
 
 RCT_REMAP_METHOD(deviceGetDeviceId,

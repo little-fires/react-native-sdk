@@ -253,8 +253,58 @@ using UInt = size_t;
 #endif
 
 #if defined(__OBJC__)
-@protocol DeviceDelegate;
+@protocol BridgeDelegate;
 @class NSString;
+
+SWIFT_CLASS("_TtC7ios_sdk6Bridge")
+@interface Bridge : NSObject
+- (nonnull instancetype)initWithDelegate:(id <BridgeDelegate> _Nonnull)delegate OBJC_DESIGNATED_INITIALIZER;
+- (void)envSetEnvMode:(NSString * _Nonnull)envMode;
+- (void)deviceNew:(NSString * _Nonnull)deviceId;
+- (void)deviceSetMatchBluetoothNames:(NSString * _Nonnull)deviceUuid matchBluetoothNames:(NSArray<NSString *> * _Nonnull)matchBluetoothNames;
+- (void)deviceSetMatchBluetoothMacAddresses:(NSString * _Nonnull)deviceUuid matchBluetoothMacAddresses:(NSArray<NSString *> * _Nonnull)matchBluetoothMacAddresses;
+- (void)deviceGetDeviceId:(NSString * _Nonnull)deviceUuid;
+- (void)deviceGetSourceType:(NSString * _Nonnull)deviceUuid;
+- (void)deviceGetDeviceType:(NSString * _Nonnull)deviceUuid;
+- (void)deviceGetDeviceModel:(NSString * _Nonnull)deviceUuid;
+- (void)deviceGetBluetoothName:(NSString * _Nonnull)deviceUuid;
+- (void)deviceGetBluetoothMacAddress:(NSString * _Nonnull)deviceUuid;
+- (void)deviceGetNeedsPairing:(NSString * _Nonnull)deviceUuid;
+- (void)deviceDelete:(NSString * _Nonnull)deviceUuid;
+- (void)deviceScannerSetSessionkey:(NSString * _Nonnull)sessionkey;
+- (void)deviceScannerAddDevice:(NSString * _Nonnull)deviceUuid;
+- (void)deviceScannerClearDevices;
+- (void)deviceScannerStart;
+- (void)deviceScannerStop;
+- (void)deviceCacheClear;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+SWIFT_PROTOCOL("_TtP7ios_sdk14BridgeDelegate_")
+@protocol BridgeDelegate
+/// Called when the operation succeeds
+/// \param result Result
+///
+- (void)onSuccess:(id _Nullable)result;
+/// Called when the operation fails
+/// \param errorCode Error code
+///
+/// \param errorMessage Error message
+///
+/// \param errorDetails Error details
+///
+- (void)onError:(NSString * _Nonnull)errorCode errorMessage:(NSString * _Nonnull)errorMessage errorDetails:(NSString * _Nullable)errorDetails;
+/// Called when an event is emitted
+/// \param name Event name
+///
+/// \param arguments Event arguments
+///
+- (void)onCallback:(NSString * _Nonnull)name arguments:(NSDictionary<NSString *, id> * _Nonnull)arguments;
+@end
+
+@protocol DeviceDelegate;
 enum SourceType : NSInteger;
 enum DeviceType : NSInteger;
 enum ConnectionState : NSInteger;
@@ -290,14 +340,14 @@ SWIFT_CLASS("_TtC7ios_sdk6Device")
 - (enum ConnectionState)getConnectionState SWIFT_WARN_UNUSED_RESULT;
 /// Returns the device’s connecting or connected Bluetooth peripheral
 - (CBPeripheral * _Nullable)getPeripheral SWIFT_WARN_UNUSED_RESULT;
-/// Sets the Bluetooth name to match against
-/// \param matchBluetoothName Bluetooth name to match against
+/// Sets the list of Bluetooth names to match against
+/// \param matchBluetoothNames List of Bluetooth names to match against
 ///
-- (void)setMatchBluetoothName:(NSString * _Nonnull)matchBluetoothName;
-/// Sets the Bluetooth uuid to match against
-/// \param matchBluetoothUuid Bluetooth uuid to match against
+- (void)setMatchBluetoothNames:(NSArray<NSString *> * _Nonnull)matchBluetoothNames;
+/// Sets the list of Bluetooth uuids to match against
+/// \param matchBluetoothUuids List of Bluetooth uuids to match against
 ///
-- (void)setMatchBluetoothUuid:(NSString * _Nonnull)matchBluetoothUuid;
+- (void)setMatchBluetoothUuids:(NSArray<NSString *> * _Nonnull)matchBluetoothUuids;
 /// Indicates successful connection to Bluetooth peripheral
 /// \param peripheral Connected Bluetooth peripheral
 ///
@@ -323,7 +373,7 @@ typedef SWIFT_ENUM(NSInteger, SourceType, open) {
 typedef SWIFT_ENUM(NSInteger, DeviceType, open) {
   DeviceTypeBloodPressureMonitor = 0,
   DeviceTypeContinuousGlucoseMonitor = 1,
-  DeviceTypeGlucoseMeter = 2,
+  DeviceTypeBloodGlucoseMeter = 2,
   DeviceTypeMobilePhone = 3,
   DeviceTypePulseOximeter = 4,
   DeviceTypeSmartScale = 5,

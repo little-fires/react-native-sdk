@@ -599,8 +599,8 @@
               },
               {
                 "kind": "Var",
-                "name": "glucoseMeter",
-                "printedName": "glucoseMeter",
+                "name": "bloodGlucoseMeter",
+                "printedName": "bloodGlucoseMeter",
                 "children": [
                   {
                     "kind": "TypeFunc",
@@ -630,8 +630,8 @@
                   }
                 ],
                 "declKind": "EnumElement",
-                "usr": "s:7ios_sdk6DeviceC0C4TypeO12glucoseMeteryA2EmF",
-                "mangledName": "$s7ios_sdk6DeviceC0C4TypeO12glucoseMeteryA2EmF",
+                "usr": "s:7ios_sdk6DeviceC0C4TypeO17bloodGlucoseMeteryA2EmF",
+                "mangledName": "$s7ios_sdk6DeviceC0C4TypeO17bloodGlucoseMeteryA2EmF",
                 "moduleName": "ios_sdk",
                 "declAttributes": [
                   "ObjC"
@@ -1388,7 +1388,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(deviceId:sourceType:deviceType:deviceModel:matchBluetoothName:matchBluetoothUuid:needsPairing:)",
+            "printedName": "init(deviceId:sourceType:deviceType:deviceModel:matchBluetoothNames:matchBluetoothUuids:needsPairing:notifyEndpoint:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1431,8 +1431,8 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
+                "name": "Array",
+                "printedName": "[Swift.String]",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -1441,12 +1441,12 @@
                     "usr": "s:SS"
                   }
                 ],
-                "usr": "s:Sq"
+                "usr": "s:Sa"
               },
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
+                "name": "Array",
+                "printedName": "[Swift.String]",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -1456,7 +1456,7 @@
                   }
                 ],
                 "hasDefaultArg": true,
-                "usr": "s:Sq"
+                "usr": "s:Sa"
               },
               {
                 "kind": "TypeNominal",
@@ -1464,11 +1464,26 @@
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
                 "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:7ios_sdk6DeviceC8deviceId10sourceType0dG00D5Model18matchBluetoothName0iJ4Uuid12needsPairingACSS_AC06SourceG0OAC0cG0OSSSgA2OSbtcfc",
-            "mangledName": "$s7ios_sdk6DeviceC8deviceId10sourceType0dG00D5Model18matchBluetoothName0iJ4Uuid12needsPairingACSS_AC06SourceG0OAC0cG0OSSSgA2OSbtcfc",
+            "usr": "s:7ios_sdk6DeviceC8deviceId10sourceType0dG00D5Model19matchBluetoothNames0iJ5Uuids12needsPairing14notifyEndpointACSS_AC06SourceG0OAC0cG0OSSSgSaySSGAQSbAPtcfc",
+            "mangledName": "$s7ios_sdk6DeviceC8deviceId10sourceType0dG00D5Model19matchBluetoothNames0iJ5Uuids12needsPairing14notifyEndpointACSS_AC06SourceG0OAC0cG0OSSSgSaySSGAQSbAPtcfc",
             "moduleName": "ios_sdk",
             "declAttributes": [
               "AccessControl",
@@ -1786,8 +1801,8 @@
           },
           {
             "kind": "Function",
-            "name": "setMatchBluetoothName",
-            "printedName": "setMatchBluetoothName(_:)",
+            "name": "setMatchBluetoothNames",
+            "printedName": "setMatchBluetoothNames(_:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1796,14 +1811,22 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@ios_sdk@objc(cs)Device(im)setMatchBluetoothName:",
-            "mangledName": "$s7ios_sdk6DeviceC21setMatchBluetoothNameyySSF",
+            "usr": "c:@M@ios_sdk@objc(cs)Device(im)setMatchBluetoothNames:",
+            "mangledName": "$s7ios_sdk6DeviceC22setMatchBluetoothNamesyySaySSGF",
             "moduleName": "ios_sdk",
             "declAttributes": [
               "AccessControl",
@@ -1814,8 +1837,8 @@
           },
           {
             "kind": "Function",
-            "name": "setMatchBluetoothUuid",
-            "printedName": "setMatchBluetoothUuid(_:)",
+            "name": "setMatchBluetoothUuids",
+            "printedName": "setMatchBluetoothUuids(_:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1824,14 +1847,22 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@ios_sdk@objc(cs)Device(im)setMatchBluetoothUuid:",
-            "mangledName": "$s7ios_sdk6DeviceC21setMatchBluetoothUuidyySSF",
+            "usr": "c:@M@ios_sdk@objc(cs)Device(im)setMatchBluetoothUuids:",
+            "mangledName": "$s7ios_sdk6DeviceC22setMatchBluetoothUuidsyySaySSGF",
             "moduleName": "ios_sdk",
             "declAttributes": [
               "AccessControl",
@@ -2742,6 +2773,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "ios_sdk",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "CoreBluetooth",
         "printedName": "CoreBluetooth",
         "declKind": "Import",
@@ -3509,6 +3550,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "ios_sdk",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "DeviceScannerDelegate",
         "printedName": "DeviceScannerDelegate",
@@ -3585,6 +3636,807 @@
         "moduleName": "ios_sdk",
         "declAttributes": [
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "ios_sdk",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Bridge",
+        "printedName": "Bridge",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(delegate:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bridge",
+                "printedName": "ios_sdk.Bridge",
+                "usr": "c:@M@ios_sdk@objc(cs)Bridge"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "BridgeDelegate",
+                "printedName": "ios_sdk.BridgeDelegate",
+                "usr": "c:@M@ios_sdk@objc(pl)BridgeDelegate"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)initWithDelegate:",
+            "mangledName": "$s7ios_sdk6BridgeC8delegateAcA0C8Delegate_p_tcfc",
+            "moduleName": "ios_sdk",
+            "objc_name": "initWithDelegate:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "envSetEnvMode",
+            "printedName": "envSetEnvMode(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)envSetEnvMode:",
+            "mangledName": "$s7ios_sdk6BridgeC13envSetEnvModeyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceNew",
+            "printedName": "deviceNew(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceNew:",
+            "mangledName": "$s7ios_sdk6BridgeC9deviceNewyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceSetMatchBluetoothNames",
+            "printedName": "deviceSetMatchBluetoothNames(_:matchBluetoothNames:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceSetMatchBluetoothNames:matchBluetoothNames:",
+            "mangledName": "$s7ios_sdk6BridgeC28deviceSetMatchBluetoothNames_05matchgH0ySS_SaySSGtF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceSetMatchBluetoothMacAddresses",
+            "printedName": "deviceSetMatchBluetoothMacAddresses(_:matchBluetoothMacAddresses:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceSetMatchBluetoothMacAddresses:matchBluetoothMacAddresses:",
+            "mangledName": "$s7ios_sdk6BridgeC35deviceSetMatchBluetoothMacAddresses_05matchghI0ySS_SaySSGtF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetDeviceId",
+            "printedName": "deviceGetDeviceId(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetDeviceId:",
+            "mangledName": "$s7ios_sdk6BridgeC17deviceGetDeviceIdyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetSourceType",
+            "printedName": "deviceGetSourceType(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetSourceType:",
+            "mangledName": "$s7ios_sdk6BridgeC19deviceGetSourceTypeyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetDeviceType",
+            "printedName": "deviceGetDeviceType(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetDeviceType:",
+            "mangledName": "$s7ios_sdk6BridgeC19deviceGetDeviceTypeyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetDeviceModel",
+            "printedName": "deviceGetDeviceModel(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetDeviceModel:",
+            "mangledName": "$s7ios_sdk6BridgeC20deviceGetDeviceModelyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetBluetoothName",
+            "printedName": "deviceGetBluetoothName(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetBluetoothName:",
+            "mangledName": "$s7ios_sdk6BridgeC22deviceGetBluetoothNameyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetBluetoothMacAddress",
+            "printedName": "deviceGetBluetoothMacAddress(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetBluetoothMacAddress:",
+            "mangledName": "$s7ios_sdk6BridgeC28deviceGetBluetoothMacAddressyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceGetNeedsPairing",
+            "printedName": "deviceGetNeedsPairing(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceGetNeedsPairing:",
+            "mangledName": "$s7ios_sdk6BridgeC21deviceGetNeedsPairingyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceDelete",
+            "printedName": "deviceDelete(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceDelete:",
+            "mangledName": "$s7ios_sdk6BridgeC12deviceDeleteyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceScannerSetSessionkey",
+            "printedName": "deviceScannerSetSessionkey(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceScannerSetSessionkey:",
+            "mangledName": "$s7ios_sdk6BridgeC26deviceScannerSetSessionkeyyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceScannerAddDevice",
+            "printedName": "deviceScannerAddDevice(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceScannerAddDevice:",
+            "mangledName": "$s7ios_sdk6BridgeC22deviceScannerAddDeviceyySSF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceScannerClearDevices",
+            "printedName": "deviceScannerClearDevices()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceScannerClearDevices",
+            "mangledName": "$s7ios_sdk6BridgeC25deviceScannerClearDevicesyyF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceScannerStart",
+            "printedName": "deviceScannerStart()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceScannerStart",
+            "mangledName": "$s7ios_sdk6BridgeC18deviceScannerStartyyF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceScannerStop",
+            "printedName": "deviceScannerStop()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceScannerStop",
+            "mangledName": "$s7ios_sdk6BridgeC17deviceScannerStopyyF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceCacheClear",
+            "printedName": "deviceCacheClear()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)deviceCacheClear",
+            "mangledName": "$s7ios_sdk6BridgeC16deviceCacheClearyyF",
+            "moduleName": "ios_sdk",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bridge",
+                "printedName": "ios_sdk.Bridge",
+                "usr": "c:@M@ios_sdk@objc(cs)Bridge"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@ios_sdk@objc(cs)Bridge(im)init",
+            "mangledName": "$s7ios_sdk6BridgeCACycfc",
+            "moduleName": "ios_sdk",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@ios_sdk@objc(cs)Bridge",
+        "mangledName": "$s7ios_sdk6BridgeC",
+        "moduleName": "ios_sdk",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "ios_sdk",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "ios_sdk",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "BridgeDelegate",
+        "printedName": "BridgeDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "onSuccess",
+            "printedName": "onSuccess(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(pl)BridgeDelegate(im)onSuccess:",
+            "mangledName": "$s7ios_sdk14BridgeDelegateP9onSuccessyyypSgF",
+            "moduleName": "ios_sdk",
+            "genericSig": "<τ_0_0 where τ_0_0 : ios_sdk.BridgeDelegate>",
+            "sugared_genericSig": "<Self where Self : ios_sdk.BridgeDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onError",
+            "printedName": "onError(_:errorMessage:errorDetails:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(pl)BridgeDelegate(im)onError:errorMessage:errorDetails:",
+            "mangledName": "$s7ios_sdk14BridgeDelegateP7onError_12errorMessage0G7DetailsySS_S2SSgtF",
+            "moduleName": "ios_sdk",
+            "genericSig": "<τ_0_0 where τ_0_0 : ios_sdk.BridgeDelegate>",
+            "sugared_genericSig": "<Self where Self : ios_sdk.BridgeDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onCallback",
+            "printedName": "onCallback(_:arguments:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@ios_sdk@objc(pl)BridgeDelegate(im)onCallback:arguments:",
+            "mangledName": "$s7ios_sdk14BridgeDelegateP10onCallback_9argumentsySS_SDySSypGtF",
+            "moduleName": "ios_sdk",
+            "genericSig": "<τ_0_0 where τ_0_0 : ios_sdk.BridgeDelegate>",
+            "sugared_genericSig": "<Self where Self : ios_sdk.BridgeDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment",
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "c:@M@ios_sdk@objc(pl)BridgeDelegate",
+        "mangledName": "$s7ios_sdk14BridgeDelegateP",
+        "moduleName": "ios_sdk",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
         ]
       },
       {
@@ -3855,48 +4707,48 @@
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
       "offset": 769,
-      "length": 12,
+      "length": 17,
       "value": "2"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 795,
+      "offset": 800,
       "length": 11,
       "value": "3"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 820,
+      "offset": 825,
       "length": 13,
       "value": "4"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 847,
+      "offset": 852,
       "length": 10,
       "value": "5"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 871,
+      "offset": 876,
       "length": 10,
       "value": "6"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 895,
+      "offset": 900,
       "length": 11,
       "value": "7"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 920,
+      "offset": 925,
       "length": 7,
       "value": "8"
     },
@@ -3911,83 +4763,90 @@
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
       "offset": 769,
-      "length": 12,
+      "length": 17,
       "value": "2"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 795,
+      "offset": 800,
       "length": 11,
       "value": "3"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 820,
+      "offset": 825,
       "length": 13,
       "value": "4"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 847,
+      "offset": 852,
       "length": 10,
       "value": "5"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 871,
+      "offset": 876,
       "length": 10,
       "value": "6"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 895,
+      "offset": 900,
       "length": 11,
       "value": "7"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 920,
+      "offset": 925,
       "length": 7,
       "value": "8"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 1633,
+      "offset": 1649,
       "length": 9,
       "value": "1"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 1656,
+      "offset": 1672,
       "length": 12,
       "value": "2"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 1633,
+      "offset": 1649,
       "length": 9,
       "value": "1"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "IntegerLiteral",
-      "offset": 1656,
+      "offset": 1672,
       "length": 12,
       "value": "2"
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
+      "kind": "Array",
+      "offset": 3007,
+      "length": 2,
+      "value": "[]"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/Device.swift",
       "kind": "BooleanLiteral",
-      "offset": 2805,
+      "offset": 3032,
       "length": 5,
       "value": "false"
     },
@@ -4036,142 +4895,156 @@
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 942,
+      "offset": 972,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 998,
+      "offset": 1028,
       "length": 10,
       "value": "\"systolic\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1054,
+      "offset": 1084,
       "length": 11,
       "value": "\"diastolic\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1110,
+      "offset": 1140,
       "length": 10,
       "value": "\"arterial\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1160,
+      "offset": 1190,
       "length": 12,
       "value": "\"pulse_rate\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1199,
+      "offset": 1229,
       "length": 13,
       "value": "\"body_motion\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1241,
+      "offset": 1271,
       "length": 15,
       "value": "\"body_position\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1280,
+      "offset": 1310,
       "length": 10,
       "value": "\"cuff_fit\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1322,
+      "offset": 1352,
       "length": 18,
       "value": "\"pulse_regularity\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1367,
+      "offset": 1397,
       "length": 13,
       "value": "\"pulse_range\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 942,
+      "offset": 1433,
+      "length": 5,
+      "value": "\"raw\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
+      "kind": "StringLiteral",
+      "offset": 972,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 998,
+      "offset": 1028,
       "length": 10,
       "value": "\"systolic\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1054,
+      "offset": 1084,
       "length": 11,
       "value": "\"diastolic\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1110,
+      "offset": 1140,
       "length": 10,
       "value": "\"arterial\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1160,
+      "offset": 1190,
       "length": 12,
       "value": "\"pulse_rate\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1199,
+      "offset": 1229,
       "length": 13,
       "value": "\"body_motion\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1241,
+      "offset": 1271,
       "length": 15,
       "value": "\"body_position\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1280,
+      "offset": 1310,
       "length": 10,
       "value": "\"cuff_fit\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1322,
+      "offset": 1352,
       "length": 18,
       "value": "\"pulse_regularity\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 1367,
+      "offset": 1397,
       "length": 13,
       "value": "\"pulse_range\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellNotifyData.swift",
+      "kind": "StringLiteral",
+      "offset": 1433,
+      "length": 5,
+      "value": "\"raw\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WellueBuffer.swift",
@@ -4232,210 +5105,224 @@
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 741,
+      "offset": 769,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 783,
+      "offset": 811,
       "length": 9,
       "value": "\"isFinal\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 837,
+      "offset": 865,
       "length": 30,
       "value": "\"systolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 913,
+      "offset": 941,
       "length": 31,
       "value": "\"diastolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 989,
+      "offset": 1017,
       "length": 30,
       "value": "\"arterialMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1059,
+      "offset": 1087,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1107,
+      "offset": 1135,
       "length": 8,
       "value": "\"userId\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1142,
+      "offset": 1170,
       "length": 12,
       "value": "\"bodyMotion\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1178,
+      "offset": 1206,
       "length": 9,
       "value": "\"cuffFit\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1219,
+      "offset": 1247,
       "length": 17,
       "value": "\"pulseRegularity\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1263,
+      "offset": 1291,
       "length": 12,
       "value": "\"pulseRange\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1304,
+      "offset": 1332,
       "length": 14,
       "value": "\"bodyPosition\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 741,
+      "offset": 1366,
+      "length": 5,
+      "value": "\"raw\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
+      "kind": "StringLiteral",
+      "offset": 769,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 783,
+      "offset": 811,
       "length": 9,
       "value": "\"isFinal\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 837,
+      "offset": 865,
       "length": 30,
       "value": "\"systolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 913,
+      "offset": 941,
       "length": 31,
       "value": "\"diastolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 989,
+      "offset": 1017,
       "length": 30,
       "value": "\"arterialMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1059,
+      "offset": 1087,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1107,
+      "offset": 1135,
       "length": 8,
       "value": "\"userId\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1142,
+      "offset": 1170,
       "length": 12,
       "value": "\"bodyMotion\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1178,
+      "offset": 1206,
       "length": 9,
       "value": "\"cuffFit\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1219,
+      "offset": 1247,
       "length": 17,
       "value": "\"pulseRegularity\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1263,
+      "offset": 1291,
       "length": 12,
       "value": "\"pulseRange\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1304,
+      "offset": 1332,
       "length": 14,
       "value": "\"bodyPosition\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1478,
+      "offset": 1366,
+      "length": 5,
+      "value": "\"raw\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
+      "kind": "StringLiteral",
+      "offset": 1531,
       "length": 11,
       "value": "\"MEASURING\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1513,
+      "offset": 1566,
       "length": 9,
       "value": "\"SUCCESS\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1544,
+      "offset": 1597,
       "length": 7,
       "value": "\"ERROR\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1478,
+      "offset": 1531,
       "length": 11,
       "value": "\"MEASURING\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1513,
+      "offset": 1566,
       "length": 9,
       "value": "\"SUCCESS\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1544,
+      "offset": 1597,
       "length": 7,
       "value": "\"ERROR\""
     },
@@ -4882,22 +5769,22 @@
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalDevice.swift",
-      "kind": "StringLiteral",
-      "offset": 282,
-      "length": 8,
-      "value": "\"PC-60F\""
+      "kind": "Array",
+      "offset": 283,
+      "length": 10,
+      "value": "[\"PC-60F\"]"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalDevice.swift",
       "kind": "StringLiteral",
-      "offset": 319,
+      "offset": 322,
       "length": 38,
       "value": "\"6E400003-B5A3-F393-E0A9-E50E24DCCA9E\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalDevice.swift",
       "kind": "Array",
-      "offset": 460,
+      "offset": 463,
       "length": 2,
       "value": "[]"
     },
@@ -4924,36 +5811,36 @@
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellDevice.swift",
-      "kind": "StringLiteral",
-      "offset": 264,
-      "length": 11,
-      "value": "\"Yuwell BP\""
+      "kind": "Array",
+      "offset": 265,
+      "length": 13,
+      "value": "[\"Yuwell BP\"]"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellDevice.swift",
       "kind": "StringLiteral",
-      "offset": 316,
+      "offset": 319,
       "length": 6,
       "value": "\"2A35\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellDevice.swift",
       "kind": "StringLiteral",
-      "offset": 366,
+      "offset": 369,
       "length": 6,
       "value": "\"2A36\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellDevice.swift",
       "kind": "FloatLiteral",
-      "offset": 421,
+      "offset": 424,
       "length": 3,
       "value": "3.0"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellDevice.swift",
       "kind": "Array",
-      "offset": 517,
+      "offset": 520,
       "length": 2,
       "value": "[]"
     },
@@ -4980,36 +5867,36 @@
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekDevice.swift",
-      "kind": "StringLiteral",
-      "offset": 283,
-      "length": 8,
-      "value": "\"meter+\""
+      "kind": "Array",
+      "offset": 284,
+      "length": 10,
+      "value": "[\"meter+\"]"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekDevice.swift",
       "kind": "StringLiteral",
-      "offset": 323,
+      "offset": 326,
       "length": 6,
       "value": "\"1808\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekDevice.swift",
       "kind": "StringLiteral",
-      "offset": 367,
+      "offset": 370,
       "length": 6,
       "value": "\"2A52\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekDevice.swift",
       "kind": "StringLiteral",
-      "offset": 412,
+      "offset": 415,
       "length": 6,
       "value": "\"2A18\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekDevice.swift",
       "kind": "Array",
-      "offset": 526,
+      "offset": 529,
       "length": 2,
       "value": "[]"
     },
@@ -5372,22 +6259,22 @@
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WellueDevice.swift",
-      "kind": "StringLiteral",
-      "offset": 263,
-      "length": 9,
-      "value": "\"VTM 20F\""
+      "kind": "Array",
+      "offset": 264,
+      "length": 11,
+      "value": "[\"VTM 20F\"]"
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WellueDevice.swift",
       "kind": "StringLiteral",
-      "offset": 301,
+      "offset": 304,
       "length": 6,
       "value": "\"FFE4\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WellueDevice.swift",
       "kind": "Array",
-      "offset": 400,
+      "offset": 403,
       "length": 2,
       "value": "[]"
     },
@@ -5401,42 +6288,42 @@
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 328,
+      "offset": 347,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 377,
+      "offset": 396,
       "length": 16,
       "value": "\"spo2Percentage\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 433,
+      "offset": 452,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 328,
+      "offset": 347,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 377,
+      "offset": 396,
       "length": 16,
       "value": "\"spo2Percentage\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/lepu_medical\/LepuMedicalPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 433,
+      "offset": 452,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
@@ -5499,86 +6386,100 @@
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 816,
+      "offset": 846,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 864,
+      "offset": 894,
       "length": 21,
       "value": "\"corrected_timestamp\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 906,
+      "offset": 936,
       "length": 6,
       "value": "\"type\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 934,
+      "offset": 964,
       "length": 7,
       "value": "\"value\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 962,
+      "offset": 992,
       "length": 6,
       "value": "\"unit\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 991,
+      "offset": 1021,
       "length": 8,
       "value": "\"device\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 816,
+      "offset": 1052,
+      "length": 5,
+      "value": "\"raw\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
+      "kind": "StringLiteral",
+      "offset": 846,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 864,
+      "offset": 894,
       "length": 21,
       "value": "\"corrected_timestamp\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 906,
+      "offset": 936,
       "length": 6,
       "value": "\"type\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 934,
+      "offset": 964,
       "length": 7,
       "value": "\"value\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 962,
+      "offset": 992,
       "length": 6,
       "value": "\"unit\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
       "kind": "StringLiteral",
-      "offset": 991,
+      "offset": 1021,
       "length": 8,
       "value": "\"device\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekNotifyData.swift",
+      "kind": "StringLiteral",
+      "offset": 1052,
+      "length": 5,
+      "value": "\"raw\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/DeviceScanner.swift",
@@ -5604,98 +6505,98 @@
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 482,
+      "offset": 505,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 542,
+      "offset": 565,
       "length": 27,
       "value": "\"glucoseMillimolesPerLiter\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 482,
+      "offset": 505,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 542,
+      "offset": 565,
       "length": 27,
       "value": "\"glucoseMillimolesPerLiter\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 472,
+      "offset": 498,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 535,
+      "offset": 561,
       "length": 30,
       "value": "\"systolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 611,
+      "offset": 637,
       "length": 31,
       "value": "\"diastolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 687,
+      "offset": 713,
       "length": 30,
       "value": "\"arterialMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 757,
+      "offset": 783,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 472,
+      "offset": 498,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 535,
+      "offset": 561,
       "length": 30,
       "value": "\"systolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 611,
+      "offset": 637,
       "length": 31,
       "value": "\"diastolicMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 687,
+      "offset": 713,
       "length": 30,
       "value": "\"arterialMillimetersOfMercury\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/yuwell\/YuwellPublishData.swift",
       "kind": "StringLiteral",
-      "offset": 757,
+      "offset": 783,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
@@ -5716,182 +6617,210 @@
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 746,
+      "offset": 767,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 806,
+      "offset": 827,
       "length": 27,
       "value": "\"correctedTimeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 863,
+      "offset": 884,
       "length": 15,
       "value": "\"hasTimeOffset\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 905,
+      "offset": 926,
       "length": 12,
       "value": "\"hasGlucose\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 939,
+      "offset": 960,
       "length": 7,
       "value": "\"units\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 972,
+      "offset": 993,
       "length": 11,
       "value": "\"hasStatus\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1010,
+      "offset": 1031,
       "length": 12,
       "value": "\"hasContext\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1053,
+      "offset": 1074,
       "length": 16,
       "value": "\"sequenceNumber\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1103,
+      "offset": 1124,
       "length": 19,
       "value": "\"timeOffsetMinutes\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1164,
+      "offset": 1185,
       "length": 27,
       "value": "\"glucoseMillimolesPerLiter\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 746,
+      "offset": 1232,
+      "length": 5,
+      "value": "\"raw\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
+      "kind": "StringLiteral",
+      "offset": 767,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 806,
+      "offset": 827,
       "length": 27,
       "value": "\"correctedTimeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 863,
+      "offset": 884,
       "length": 15,
       "value": "\"hasTimeOffset\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 905,
+      "offset": 926,
       "length": 12,
       "value": "\"hasGlucose\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 939,
+      "offset": 960,
       "length": 7,
       "value": "\"units\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 972,
+      "offset": 993,
       "length": 11,
       "value": "\"hasStatus\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1010,
+      "offset": 1031,
       "length": 12,
       "value": "\"hasContext\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1053,
+      "offset": 1074,
       "length": 16,
       "value": "\"sequenceNumber\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1103,
+      "offset": 1124,
       "length": 19,
       "value": "\"timeOffsetMinutes\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
       "kind": "StringLiteral",
-      "offset": 1164,
+      "offset": 1185,
       "length": 27,
       "value": "\"glucoseMillimolesPerLiter\""
     },
     {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/accu_chek\/AccuChekRawData.swift",
+      "kind": "StringLiteral",
+      "offset": 1232,
+      "length": 5,
+      "value": "\"raw\""
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/Bridge.swift",
+      "kind": "Dictionary",
+      "offset": 292,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/Bridge.swift",
+      "kind": "StringLiteral",
+      "offset": 109,
+      "length": 6,
+      "value": "\"ios_sdk.Bridge\""
+    },
+    {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WelluePublishData.swift",
       "kind": "StringLiteral",
-      "offset": 318,
+      "offset": 337,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WelluePublishData.swift",
       "kind": "StringLiteral",
-      "offset": 367,
+      "offset": 386,
       "length": 16,
       "value": "\"spo2Percentage\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WelluePublishData.swift",
       "kind": "StringLiteral",
-      "offset": 423,
+      "offset": 442,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WelluePublishData.swift",
       "kind": "StringLiteral",
-      "offset": 318,
+      "offset": 337,
       "length": 18,
       "value": "\"timeMilliseconds\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WelluePublishData.swift",
       "kind": "StringLiteral",
-      "offset": 367,
+      "offset": 386,
       "length": 16,
       "value": "\"spo2Percentage\""
     },
     {
       "filePath": "\/Users\/admin\/littlefires\/projects\/ios-sdk\/ios-sdk\/ios-sdk\/devices\/wellue\/WelluePublishData.swift",
       "kind": "StringLiteral",
-      "offset": 423,
+      "offset": 442,
       "length": 25,
       "value": "\"pulseRateBeatsPerMinute\""
     }
