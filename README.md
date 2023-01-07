@@ -26,8 +26,14 @@ This section provides instructions to run the example application.
 
 Inside [example/android](example/android) folder, please create a file called `local.properties` and enter the following line to specify your Android SDK directory:
 
-```
-sdk.dir=<sdk_dir>
+```bash
+# Directory to Android SDK
+sdk.dir=...
+
+# Add the line below to set a suffix version to the "com.facebook.react:react-native" library
+# This is fix build configuration issues
+# For example, you can set: com.facebook.react.react.native.version=:+
+# com.facebook.react.react.native.version=...
 ```
 
 Then, open a terminal in the root project directory and run the following commands:
