@@ -67,13 +67,13 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file("local.properties").newDataInputStream())
-def com_facebook_react_react_native_version = properties.getProperty("com.facebook.react.react.native.version") ?: ""
+def littlefires_com_facebook_react_react_native_version = properties.getProperty("littlefires.com.facebook.react.react.native.version") ?: ":+"
 
 dependencies {
   // For < 0.71, this will be from the local maven repo
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
-  implementation "com.facebook.react:react-native$com_facebook_react_react_native_version"
+  implementation "com.facebook.react:react-native$littlefires_com_facebook_react_react_native_version"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation 'androidx.work:work-runtime:2.7.1'
   // implementation 'androidx.health.connect:connect-client:1.0.0-alpha08'
