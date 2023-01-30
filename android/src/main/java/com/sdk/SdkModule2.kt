@@ -68,6 +68,13 @@ class SdkModule2(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
+  fun backendSetSessionkey(sessionkey: String, promise: Promise) {
+    Log.d(TAG, "backendSetSessionkey()")
+    bridge.currentPromise = promise
+    bridge.backendSetSessionkey(sessionkey)
+  }
+
+  @ReactMethod
   fun deviceNew(deviceId: String, promise: Promise) {
     Log.d(TAG, "deviceNew()")
     bridge.currentPromise = promise
@@ -94,6 +101,28 @@ class SdkModule2(reactContext: ReactApplicationContext) :
     Log.d(TAG, "deviceSetMatchBluetoothMacAddresses()")
     bridge.currentPromise = promise
     bridge.deviceSetMatchBluetoothMacAddresses(deviceUuid, matchBluetoothMacAddresses)
+  }
+
+  @ReactMethod
+  fun deviceSetAutoTimeSync(
+    deviceUuid: String,
+    autoTimeSync: Boolean,
+    promise: Promise,
+  ) {
+    Log.d(TAG, "deviceSetAutoTimeSync()")
+    bridge.currentPromise = promise
+    bridge.deviceSetAutoTimeSync(deviceUuid, autoTimeSync)
+  }
+
+  @ReactMethod
+  fun deviceSetAutoNotify(
+    deviceUuid: String,
+    autoNotify: Boolean,
+    promise: Promise,
+  ) {
+    Log.d(TAG, "deviceSetAutoNotify()")
+    bridge.currentPromise = promise
+    bridge.deviceSetAutoNotify(deviceUuid, autoNotify)
   }
 
   @ReactMethod
@@ -153,6 +182,13 @@ class SdkModule2(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
+  fun autoDeviceSetFilterByDeviceIds(deviceUuid: String, filterByDeviceIds: List<String>?, promise: Promise) {
+    Log.d(TAG, "autoDeviceSetFilterByDeviceIds()")
+    bridge.currentPromise = promise
+    bridge.autoDeviceSetFilterByDeviceIds(deviceUuid, filterByDeviceIds)
+  }
+
+  @ReactMethod
   fun deviceScannerSetSessionkey(sessionkey: String, promise: Promise) {
     Log.d(TAG, "deviceScannerSetSessionkey()")
     bridge.currentPromise = promise
@@ -174,6 +210,13 @@ class SdkModule2(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
+  fun deviceScannerGetBondedDevices(promise: Promise) {
+    Log.d(TAG, "deviceScannerGetBondedDevices()")
+    bridge.currentPromise = promise
+    bridge.deviceScannerGetBondedDevices()
+  }
+
+  @ReactMethod
   fun deviceScannerStart(promise: Promise) {
     Log.d(TAG, "deviceScannerStart()")
     bridge.currentPromise = promise
@@ -192,5 +235,12 @@ class SdkModule2(reactContext: ReactApplicationContext) :
     Log.d(TAG, "deviceCacheClear()")
     bridge.currentPromise = promise
     bridge.deviceCacheClear()
+  }
+
+  @ReactMethod
+  fun measurementUnitConversionUtilsConvert(value: Double, src: String, dst: String, promise: Promise) {
+    Log.d(TAG, "measurementUnitConversionUtilsConvert()")
+    bridge.currentPromise = promise
+    bridge.measurementUnitConversionUtilsConvert(value, src, dst)
   }
 }
