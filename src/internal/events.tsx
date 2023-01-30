@@ -103,6 +103,8 @@ const onDeviceConnectionState = (data: any) => {
     event = { deviceUuid, state: 'connecting' };
   } else if (state === 'connected') {
     event = { deviceUuid, state: 'connected' };
+  } else if (state === 'paired') {
+    event = { deviceUuid, state: 'paired' };
   } else if (state === 'disconnected') {
     event = { deviceUuid, state: 'disconnected' };
   } else {

@@ -5,6 +5,7 @@ import type {
   DeviceId,
   DeviceSourceType,
   DeviceDeviceType,
+  MeasurementUnit,
 } from './types';
 
 const LINKING_ERROR =
@@ -32,6 +33,10 @@ export class Api {
     await LFSdk.envSetEnvMode(envMode);
   };
 
+  static backendSetSessionkey = async (sessionkey: string) => {
+    await LFSdk.backendSetSessionkey(sessionkey);
+  };
+
   static deviceNew = async (deviceId: DeviceId): Promise<string> => {
     return LFSdk.deviceNew(deviceId);
   };
@@ -51,6 +56,14 @@ export class Api {
       deviceUuid,
       matchBluetoothMacAddresses
     );
+  };
+
+  static deviceSetAutoTimeSync = async (deviceUuid: string, autoTimeSync: boolean) => {
+    await LFSdk.deviceSetAutoTimeSync(deviceUuid, autoTimeSync);
+  };
+
+  static deviceSetAutoNotify = async (deviceUuid: string, autoNotify: boolean) => {
+    await LFSdk.deviceSetAutoNotify(deviceUuid, autoNotify);
   };
 
   static deviceGetDeviceId = async (deviceUuid: string): Promise<string> => {
@@ -90,6 +103,10 @@ export class Api {
     await LFSdk.deviceDelete(deviceUuid);
   };
 
+  static autoDeviceSetFilterByDeviceIds = async (deviceUuid: string, filterByDeviceIds?: string[]): Promise<void> => {
+    await LFSdk.autoDeviceSetFilterByDeviceIds(deviceUuid, filterByDeviceIds);
+  };
+
   static deviceScannerSetSessionkey = async (sessionkey: string) => {
     await LFSdk.deviceScannerSetSessionkey(sessionkey);
   };
@@ -112,5 +129,9 @@ export class Api {
 
   static deviceCacheClear = async () => {
     await LFSdk.deviceCacheClear();
+  };
+
+  static measurementUnitConversionUtilsConvert = async (value: number, src: MeasurementUnit, dst: MeasurementUnit): Promise<number | undefined> => {
+    return LFSdk.measurementUnitConversionUtilsConvert(value, src, dst);
   };
 }

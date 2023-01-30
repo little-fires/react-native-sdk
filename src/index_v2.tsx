@@ -136,16 +136,63 @@ export class Device<T> {
   };
 
   /**
-   * Set device Bluetooth MAC address to search
-   * @param macAddress MAC address
+   * Set device Bluetooth names to search
+   * @param matchBluetoothNames List of Bluetooth names
    */
-  setMacAddress = async (macAddress: string) => {
+  setMatchBluetoothNames = async (matchBluetoothNames: string[]) => {
     if (!this.deviceUuid) {
       throw Error(
-        'Failed to run Device.setMacAddress(): Did you forget to call Device.new()?'
+        'Failed to run Device.setMatchBluetoothNames(): Did you forget to call Device.new()?'
       );
     }
-    await Api.deviceSetMacAddress(this.deviceUuid, macAddress);
+    await Api.deviceSetMatchBluetoothNames(
+      this.deviceUuid,
+      matchBluetoothNames
+    );
+  };
+
+  /**
+   * Set device Bluetooth MAC addresses to search
+   * @param matchBluetoothMacAddresses List of Bluetooth MAC addresses
+   */
+  setMatchBluetoothMacAddresses = async (
+    matchBluetoothMacAddresses: string[]
+  ) => {
+    if (!this.deviceUuid) {
+      throw Error(
+        'Failed to run Device.setMatchBluetoothMacAddresses(): Did you forget to call Device.new()?'
+      );
+    }
+    await Api.deviceSetMatchBluetoothMacAddresses(
+      this.deviceUuid,
+      matchBluetoothMacAddresses
+    );
+  };
+
+  /**
+   * Set device auto time sync flag
+   * @param autoTimeSync Auto time sync flag
+   */
+  setAutoTimeSync = async (autoTimeSync: boolean) => {
+    if (!this.deviceUuid) {
+      throw Error(
+        'Failed to run Device.setAutoTimeSync(): Did you forget to call Device.new()?'
+      );
+    }
+    await Api.deviceSetAutoTimeSync(this.deviceUuid, autoTimeSync);
+  };
+
+  /**
+   * Set device auto notify flag
+   * @param autoNotify Auto notify flag
+   */
+  setAutoNotify = async (autoNotify: boolean) => {
+    if (!this.deviceUuid) {
+      throw Error(
+        'Failed to run Device.setAutoNotify(): Did you forget to call Device.new()?'
+      );
+    }
+    await Api.deviceSetAutoTimeSync(this.deviceUuid, autoNotify);
   };
 
   /**
@@ -269,4 +316,20 @@ export class AutoDevice extends Device<AutoPublishData> {
   constructor() {
     super('auto');
   }
+
+  /**
+   * Set filter by device IDs
+   * @param filterByDeviceIds List of device IDs to filter
+   */
+  setFilterByDeviceIds = async (filterByDeviceIds?: string[]) => {
+    if (!this.deviceUuid) {
+      throw Error(
+        'Failed to run AutoDevice.setFilterByDeviceIds(): Did you forget to call Device.new()?'
+      );
+    }
+    await Api.autoDeviceSetFilterByDeviceIds(
+      this.deviceUuid,
+      filterByDeviceIds
+    );
+  };
 }

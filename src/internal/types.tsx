@@ -42,7 +42,11 @@ export type DeviceScannerState = 'started' | 'stopped';
 // connecting: Connecting to device
 // connected: Connected to device
 // disconnected: Not connected to device
-export type DeviceConnectionState = 'connecting' | 'connected' | 'disconnected';
+export type DeviceConnectionState =
+  | 'connecting'
+  | 'connected'
+  | 'paired'
+  | 'disconnected';
 
 // Event that is emitted when the state of device scanner changes
 export type DeviceScannerStateEvent = {
@@ -60,12 +64,58 @@ export type DeviceDataEvent<T = any> = {
   data: T;
 };
 
-export type AccuChekPublishData = {
+export type AccuChekRawData = {
+  // List of readings
+  readings: AccuChekRawDataReading[];
+};
+
+export type AccuChekRawDataReading = {
   // Time in milliseconds since epoch
   timeMilliseconds: number;
 
+  // Corrected time in milliseconds since epoch
+  correctedTimeMilliseconds: number;
+
+  // Flag to indicate if time offset is available
+  hasTimeOffset: boolean;
+
+  // Flag to indicate if glucose is available
+  hasGlucose: boolean;
+
+  // Glucose units
+  units: number;
+
+  // Flag to indicate if status is available
+  hasStatus: boolean;
+
+  // Flag to indicate if context is available
+  hasContext: boolean;
+
+  // Sequence number
+  sequenceNumber: number;
+
+  // Time offset in minutes from original time -> corrected time
+  timeOffsetMinutes?: number;
+
   // Blood glucose sugar level in mmol/L
   glucoseMillimolesPerLiter?: number;
+
+  // Raw data in hexadecimal
+  rawHex?: string;
+};
+
+export type AccuChekPublishData = {
+  // List of readings
+  readings: {
+    // Time in milliseconds since epoch
+    timeMilliseconds: number;
+
+    // Blood glucose sugar level in mmol/L
+    glucoseMillimolesPerLiter?: number;
+
+    // Raw data reading
+    rawDataReading?: AccuChekRawDataReading;
+  }[];
 };
 
 export type LepuMedicalPublishData = {
@@ -133,3 +183,36 @@ export type AutoPublishData = {
     | WelluePublishData
     | YuwellPublishData;
 };
+
+export type MeasurementUnit =
+  | 'PERCENTAGE'
+  | 'BEATS_PER_MINUTE'
+  | 'MICROGRAMS'
+  | 'MILLIGRAMS'
+  | 'GRAMS'
+  | 'KILOGRAMS'
+  | 'OUNCES'
+  | 'POUNDS'
+  | 'CENTIMETERS'
+  | 'METERS'
+  | 'KILOMETERS'
+  | 'MILES'
+  | 'INCHES'
+  | 'FEET'
+  | 'LITERS'
+  | 'MILLILITERS'
+  | 'FLUID_OUNCES_US'
+  | 'MILLIMOLES_PER_LITER'
+  | 'MILLIGRAMS_PER_DECILITER'
+  | 'MILLIMETERS_OF_MERCURY'
+  | 'WATTS'
+  | 'KILOCALORIES_PER_DAY'
+  | 'CALORIES'
+  | 'KILOCALORIES'
+  | 'JOULES'
+  | 'KILOJOULES'
+  | 'CELSIUS'
+  | 'FAHRENHEIT'
+  | 'METERS_PER_SECOND'
+  | 'KILOMETERS_PER_HOUR'
+  | 'MILES_PER_HOUR';

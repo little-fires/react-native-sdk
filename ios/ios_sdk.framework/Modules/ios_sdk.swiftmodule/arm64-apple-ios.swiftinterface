@@ -48,6 +48,7 @@ import _StringProcessing
     case connecting
     case connected
     case disconnected
+    case paired
     public init?(rawValue: Swift.Int)
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
@@ -66,10 +67,14 @@ import _StringProcessing
   @objc public func getBluetoothName() -> Swift.String?
   @objc public func getBluetoothUuid() -> Swift.String?
   @objc public func getNeedsPairing() -> Swift.Bool
+  @objc public func getAutoTimeSync() -> Swift.Bool
+  @objc public func getAutoNotify() -> Swift.Bool
   @objc public func getConnectionState() -> ios_sdk.Device.ConnectionState
   @objc public func getPeripheral() -> CoreBluetooth.CBPeripheral?
   @objc public func setMatchBluetoothNames(_ matchBluetoothNames: [Swift.String])
   @objc public func setMatchBluetoothUuids(_ matchBluetoothUuids: [Swift.String])
+  @objc public func setAutoTimeSync(_ autoTimeSync: Swift.Bool)
+  @objc public func setAutoNotify(_ autoNotify: Swift.Bool)
   @objc public func connect(_ peripheral: CoreBluetooth.CBPeripheral)
   @objc public func disconnect()
   @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverServices error: Swift.Error?)
@@ -108,15 +113,68 @@ import _StringProcessing
   @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDisconnectPeripheral peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error?)
   @objc deinit
 }
+@objc public enum MeasurementUnit : Swift.Int {
+  case percentage
+  case beatsPerMinute
+  case micrograms
+  case milligrams
+  case grams
+  case kilograms
+  case ounces
+  case pounds
+  case centimeters
+  case meters
+  case kilometers
+  case miles
+  case inches
+  case feet
+  case liters
+  case milliliters
+  case fluidOuncesUs
+  case millimolesPerLiter
+  case milligramsPerDeciliter
+  case millimetersOfMercury
+  case watts
+  case kilocaloriesPerDay
+  case calories
+  case kilocalories
+  case joules
+  case kilojoules
+  case celsius
+  case fahrenheit
+  case metersPerSecond
+  case kilometersPerHour
+  case milesPerHour
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
 @objc public protocol DeviceScannerDelegate {
   @objc func onStateChange(_ state: Swift.String)
 }
 @objc public class Bridge : ObjectiveC.NSObject {
+  @objc public enum ErrorCode : Swift.Int {
+    case invalidDeviceId
+    case invalidDeviceUuid
+    case invalidAutoDevice
+    case invalidMeasurementUnit
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
   @objc public init(delegate: ios_sdk.BridgeDelegate)
   @objc public func envSetEnvMode(_ envMode: Swift.String)
+  @objc public func backendSetSessionkey(_ sessionkey: Swift.String)
+  @objc public func backendNotify(_ deviceId: Swift.String, data: Swift.String, onSuccess: @escaping (Swift.Bool) -> ())
   @objc public func deviceNew(_ deviceId: Swift.String)
   @objc public func deviceSetMatchBluetoothNames(_ deviceUuid: Swift.String, matchBluetoothNames: [Swift.String])
   @objc public func deviceSetMatchBluetoothMacAddresses(_ deviceUuid: Swift.String, matchBluetoothMacAddresses: [Swift.String])
+  @objc public func deviceSetAutoTimeSync(_ deviceUuid: Swift.String, autoTimeSync: Swift.Bool)
+  @objc public func deviceSetAutoNotify(_ deviceUuid: Swift.String, autoNotify: Swift.Bool)
   @objc public func deviceGetDeviceId(_ deviceUuid: Swift.String)
   @objc public func deviceGetSourceType(_ deviceUuid: Swift.String)
   @objc public func deviceGetDeviceType(_ deviceUuid: Swift.String)
@@ -125,12 +183,15 @@ import _StringProcessing
   @objc public func deviceGetBluetoothMacAddress(_ deviceUuid: Swift.String)
   @objc public func deviceGetNeedsPairing(_ deviceUuid: Swift.String)
   @objc public func deviceDelete(_ deviceUuid: Swift.String)
+  @objc public func autoDeviceSetFilterByDeviceIds(_ deviceUuid: Swift.String, filterByDeviceIds: [Swift.String]?)
+  @objc public func autoDeviceGetFilterByDeviceIds(_ deviceUuid: Swift.String)
   @objc public func deviceScannerSetSessionkey(_ sessionkey: Swift.String)
   @objc public func deviceScannerAddDevice(_ deviceUuid: Swift.String)
   @objc public func deviceScannerClearDevices()
   @objc public func deviceScannerStart()
   @objc public func deviceScannerStop()
   @objc public func deviceCacheClear()
+  @objc public func measurementUnitConversionUtilsConvert(_ value: Swift.Double, _ src: Swift.String, _ dst: Swift.String)
   @objc deinit
 }
 @objc public protocol BridgeDelegate {
@@ -151,3 +212,9 @@ extension ios_sdk.Device.DeviceType : Swift.RawRepresentable {}
 extension ios_sdk.Device.ConnectionState : Swift.Equatable {}
 extension ios_sdk.Device.ConnectionState : Swift.Hashable {}
 extension ios_sdk.Device.ConnectionState : Swift.RawRepresentable {}
+extension ios_sdk.MeasurementUnit : Swift.Equatable {}
+extension ios_sdk.MeasurementUnit : Swift.Hashable {}
+extension ios_sdk.MeasurementUnit : Swift.RawRepresentable {}
+extension ios_sdk.Bridge.ErrorCode : Swift.Equatable {}
+extension ios_sdk.Bridge.ErrorCode : Swift.Hashable {}
+extension ios_sdk.Bridge.ErrorCode : Swift.RawRepresentable {}
